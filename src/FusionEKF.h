@@ -32,6 +32,21 @@ public:
   KalmanFilter ekf_;
 
 private:
+  /**
+  * Initialize the state ekf_.x_ with ladar measurement
+  */
+  void InitState(const MeasurementPackage &measurement_pack);
+
+  /**
+  * update state transition matrix F
+  */
+  void UpdateEKFMatrixF(double dt);
+
+  /**
+  * update process covariance matrix Q
+  */
+  void UpdateEKFMatrixQ(double dt, double ax, double ay);
+
   // check whether the tracking toolbox was initialized or not (first measurement)
   bool is_initialized_;
 
